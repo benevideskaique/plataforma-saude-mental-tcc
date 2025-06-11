@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar Terapeuta - Bem-Estar Conectado</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo" aria-label="Página inicial da Bem-Estar Conectado">Bem-Estar Conectado</a>
+            <nav class="main-nav" aria-label="Navegação principal do site">
+                <button class="nav-toggle" aria-controls="main-menu" aria-expanded="false" aria-label="Abrir menu de navegação">
+                    &#9776;
+                </button>
+                <ul id="main-menu" class="nav-list">
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="professionals.html" aria-current="page">Buscar Terapeuta</a></li>
+                    <li><a href="#">Conteúdo Educativo</a></li>
+                    <li><a href="#">Grupos de Apoio</a></li>
+                    <li><a href="#" class="btn-login">Login / Cadastro</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <section class="search-section container">
+            <h1>Encontre o Terapeuta Ideal para Você</h1>
+            <div class="search-form">
+                <label for="search-input" class="sr-only">Buscar por nome ou especialidade</label>
+                <input type="text" id="search-input" placeholder="Buscar por nome ou especialidade..." aria-label="Campo de busca de terapeutas">
+                <div class="filters">
+                    <label for="specialty-filter" class="sr-only">Especialidade</label>
+                    <select id="specialty-filter" aria-label="Filtrar por especialidade">
+                        <option value="">Todas as Especialidades</option>
+                        <option value="psicologia">Psicologia</option>
+                        <option value="psiquiatria">Psiquiatria</option>
+                        <option value="terapia-ocupacional">Terapia Ocupacional</option>
+                    </select>
+
+                    <label for="ethnicity-filter" class="sr-only">Etnia</label>
+                    <select id="ethnicity-filter" aria-label="Filtrar por etnia do profissional">
+                        <option value="">Todas as Etnias</option>
+                        <option value="branca">Branca</option>
+                        <option value="negra">Negra</option>
+                        <option value="indigena">Indígena</option>
+                        <option value="asiatica">Asiática</option>
+                        <option value="parda">Parda</option>
+                    </select>
+
+                    <label for="accessibility-filter" class="sr-only">Recursos de Acessibilidade</label>
+                    <select id="accessibility-filter" aria-label="Filtrar por recursos de acessibilidade do profissional">
+                        <option value="">Recursos de Acessibilidade</option>
+                        <option value="libras">Atende em Libras</option>
+                        <option value="braille">Material em Braille</option>
+                    </select>
+                </div>
+                <button type="button" class="btn btn-primary" aria-label="Aplicar filtros de busca">Aplicar Filtros</button>
+            </div>
+
+            <div class="professional-results">
+                <h2>Resultados da Busca</h2>
+                <div class="professional-grid">
+                    <article class="professional-card">
+                        <img src="https://via.placeholder.com/100" alt="Foto de perfil da Dra. Ana Silva" class="professional-photo">
+                        <div class="professional-info">
+                            <h3>Dra. Ana Silva</h3>
+                            <p class="specialty">Psicóloga Clínica</p>
+                            <p class="description">Especialista em terapia cognitivo-comportamental, com foco em ansiedade e depressão. Atende em Libras.</p>
+                            <div class="rating" aria-label="Avaliação: 4.8 de 5 estrelas">
+                                <span role="img" aria-label="4 estrelas e meia">⭐️⭐️⭐️⭐️✨</span> 4.8 (120 avaliações)
+                            </div>
+                            <a href="professional-profile.html" class="btn btn-secondary" aria-label="Ver perfil completo da Dra. Ana Silva">Ver Perfil</a>
+                        </div>
+                    </article>
+
+                    <article class="professional-card">
+                        <img src="https://via.placeholder.com/100" alt="Foto de perfil do Dr. João Oliveira" class="professional-photo">
+                        <div class="professional-info">
+                            <h3>Dr. João Oliveira</h3>
+                            <p class="specialty">Psiquiatra</p>
+                            <p class="description">Psiquiatra com experiência em transtornos do humor e TDAH. Atendimento focado em acolhimento e escuta.</p>
+                            <div class="rating" aria-label="Avaliação: 4.9 de 5 estrelas">
+                                <span role="img" aria-label="4 estrelas e meia">⭐️⭐️⭐️⭐️✨</span> 4.9 (85 avaliações)
+                            </div>
+                            <a href="professional-profile.html" class="btn btn-secondary" aria-label="Ver perfil completo do Dr. João Oliveira">Ver Perfil</a>
+                        </div>
+                    </article>
+
+                    <article class="professional-card">
+                        <img src="https://via.placeholder.com/100" alt="Foto de perfil da Dra. Lúcia Santos" class="professional-photo">
+                        <div class="professional-info">
+                            <h3>Dra. Lúcia Santos</h3>
+                            <p class="specialty">Psicóloga Social</p>
+                            <p class="description">Especialista em questões raciais e saúde mental de minorias. Foco em empoderamento e resiliência.</p>
+                            <div class="rating" aria-label="Avaliação: 4.7 de 5 estrelas">
+                                <span role="img" aria-label="4 estrelas e meia">⭐️⭐️⭐️⭐️✨</span> 4.7 (95 avaliações)
+                            </div>
+                            <a href="professional-profile.html" class="btn btn-secondary" aria-label="Ver perfil completo da Dra. Lúcia Santos">Ver Perfil</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Bem-Estar Conectado</h3>
+                    <p>Promovendo saúde mental para todos, com acessibilidade e inclusão.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Navegação</h3>
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="professionals.html">Buscar Terapeuta</a></li>
+                        <li><a href="#">Conteúdo Educativo</a></li>
+                        <li><a href="#">Grupos de Apoio</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#">Termos de Uso</a></li>
+                        <li><a href="#">Política de Privacidade</a></li>
+                        <li><a href="#" id="acessibility-policy-link">Política de Acessibilidade</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Acessibilidade</h3>
+                    <button id="toggle-contrast" aria-label="Alternar modo de alto contraste">Alto Contraste</button>
+                    <button id="toggle-font-size" aria-label="Aumentar/Diminuir tamanho da fonte">Tamanho da Fonte</button>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Bem-Estar Conectado. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/scripts.js"></script>
+</body>
+</html>
+Arquivo: frontend/professional-profile.html
+
+HTML
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil do Terapeuta - Bem-Estar Conectado</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo" aria-label="Página inicial da Bem-Estar Conectado">Bem-Estar Conectado</a>
+            <nav class="main-nav" aria-label="Navegação principal do site">
+                <button class="nav-toggle" aria-controls="main-menu" aria-expanded="false" aria-label="Abrir menu de navegação">
+                    &#9776;
+                </button>
+                <ul id="main-menu" class="nav-list">
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="professionals.html" aria-current="page">Buscar Terapeuta</a></li>
+                    <li><a href="#">Conteúdo Educativo</a></li>
+                    <li><a href="#">Grupos de Apoio</a></li>
+                    <li><a href="#" class="btn-login">Login / Cadastro</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <section class="professional-profile container">
+            <div class="profile-header">
+                <img src="https://via.placeholder.com/150" alt="Foto de perfil da Dra. Ana Silva" class="profile-photo">
+                <div class="profile-intro">
+                    <h1>Dra. Ana Silva</h1>
+                    <p class="profile-specialty">Psicóloga Clínica (CRP: 06/123456)</p>
+                    <div class="profile-rating" aria-label="Avaliação: 4.8 de 5 estrelas">
+                        <span role="img" aria-label="4 estrelas e meia">⭐️⭐️⭐️⭐️✨</span> 4.8 (120 avaliações)
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-details">
+                <aside class="profile-sidebar">
+                    <div class="booking-card">
+                        <h2>Agende sua Consulta</h2>
+                        <p class="price">A partir de R$ 150/sessão</p>
+                        <label for="calendar-input" class="sr-only">Selecione uma data</label>
+                        <input type="date" id="calendar-input" aria-label="Campo para selecionar data da consulta">
+                        <label for="time-slot" class="sr-only">Selecione um horário</label>
+                        <select id="time-slot" aria-label="Selecione um horário disponível">
+                            <option value="">Selecione um horário</option>
+                            <option value="09:00">09:00 - 10:00</option>
+                            <option value="10:30">10:30 - 11:30</option>
+                            <option value="14:00">14:00 - 15:00</option>
+                        </select>
+                        <button class="btn btn-primary btn-full-width" aria-label="Agendar consulta com Dra. Ana Silva">Agendar Consulta</button>
+                    </div>
+                    <div class="contact-card">
+                        <h3>Contato</h3>
+                        <p>Dúvidas? Entre em contato!</p>
+                        <a href="mailto:ana.silva@email.com" class="btn btn-secondary btn-full-width" aria-label="Enviar e-mail para Dra. Ana Silva">Enviar Mensagem</a>
+                    </div>
+                </aside>
+
+                <article class="profile-main-content">
+                    <h2>Sobre Mim</h2>
+                    <p>Com mais de 10 anos de experiência, sou psicóloga clínica focada em terapia cognitivo-comportamental (TCC). Acredito na importância de um ambiente acolhedor e seguro para que o paciente possa explorar suas emoções e desenvolver estratégias de enfrentamento.</p>
+                    <p>Meu trabalho é voltado para adultos que buscam apoio para lidar com ansiedade, depressão, estresse e questões de relacionamento. Além disso, possuo fluência em Libras, oferecendo atendimento acessível para a comunidade surda.</p>
+
+                    <h2>Abordagem Terapêutica</h2>
+                    <ul>
+                        <li>Terapia Cognitivo-Comportamental (TCC)</li>
+                        <li>Terapia de Aceitação e Compromisso (ACT)</li>
+                        <li>Mindfulness</li>
+                    </ul>
+
+                    <h2>Áreas de Atuação</h2>
+                    <ul>
+                        <li>Ansiedade e Transtornos de Ansiedade</li>
+                        <li>Depressão</li>
+                        <li>Estresse e Burnout</li>
+                        <li>Transtornos do Humor</li>
+                        <li>Relações Familiares e de Casal</li>
+                        <li>Luto</li>
+                    </ul>
+
+                    <h2>Recursos de Acessibilidade</h2>
+                    <ul>
+                        <li><span role="img" aria-label="Símbolo de Libras">🤟</span> Atendimento em Libras</li>
+                        <li><span role="img" aria-label="Símbolo de legenda">🔤</span> Conteúdo e informações disponíveis em formatos acessíveis (textos ampliáveis, contraste ajustável)</li>
+                    </ul>
+
+                    <h2>Avaliações de Pacientes</h2>
+                    <div class="reviews">
+                        <div class="review-item">
+                            <p class="review-text">"A Dra. Ana me ajudou muito a entender e lidar com minha ansiedade. Ela é muito atenciosa e profissional."</p>
+                            <p class="reviewer">- João P., 22/05/2025</p>
+                        </div>
+                        <div class="review-item">
+                            <p class="review-text">"Excelente profissional! O atendimento em Libras fez toda a diferença para mim. Sinto-me realmente compreendida."</p>
+                            <p class="reviewer">- Maria S., 18/05/2025</p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Bem-Estar Conectado</h3>
+                    <p>Promovendo saúde mental para todos, com acessibilidade e inclusão.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Navegação</h3>
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="professionals.html">Buscar Terapeuta</a></li>
+                        <li><a href="#">Conteúdo Educativo</a></li>
+                        <li><a href="#">Grupos de Apoio</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#">Termos de Uso</a></li>
+                        <li><a href="#">Política de Privacidade</a></li>
+                        <li><a href="#" id="acessibility-policy-link">Política de Acessibilidade</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Acessibilidade</h3>
+                    <button id="toggle-contrast" aria-label="Alternar modo de alto contraste">Alto Contraste</button>
+                    <button id="toggle-font-size" aria-label="Aumentar/Diminuir tamanho da fonte">Tamanho da Fonte</button>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Bem-Estar Conectado. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/scripts.js"></script>
+</body>
+</html>
