@@ -1,1 +1,192 @@
+# Simulação de modelos de banco de dados (equivalente a classes ORM como em Django/SQLAlchemy)
 
+class Usuario:
+    def __init__(self, id, nome, email, senha_hash, config_acessibilidade={}):
+        self.id = id
+        self.nome = nome
+        self.email = email
+        self.senha_hash = senha_hash # Senha já hashed (ex: bcrypt)
+        self.config_acessibilidade = config_acessibilidade # Dicionário para configs como {'tamanho_fonte': 'medio', 'contraste': 'alto'}
+
+class ProfissionalSaude:
+    def __init__(self, id, nome, crp_crm, especialidade, disponibilidade={}):
+        self.id = id
+        self.nome = nome
+        self.crp_crm = crp_crm
+        self.especialidade = especialidade
+        self.disponibilidade = disponibilidade # Ex: {'segunda': ['09:00', '10:00']}
+
+class Consulta:
+    def __init__(self, id, id_usuario, id_profissional, data_hora_inicio, link_sala_virtual, status="Agendada"):
+        self.id = id
+        self.id_usuario = id_usuario
+        self.id_profissional = id_profissional
+        self.data_hora_inicio = data_hora_inicio
+        self.link_sala_virtual = link_sala_virtual
+        self.status = status
+
+class ConteudoEducativo:
+    def __init__(self, id, titulo, tipo_midia, url_midia, texto_completo=""):
+        self.id = id
+        self.titulo = titulo
+        self.tipo_midia = tipo_midia # 'artigo', 'video'
+        self.url_midia = url_midia
+        self.texto_completo = texto_completo
+
+# --- Simulação de um "Banco de Dados" em memória para demonstração ---
+db_usuarios = {} # {id: Usuario_obj}
+db_profissionais = {}
+db_consultas = {}
+db_conteudo = {}
+
+# Variáveis para gerar IDs sequenciais
+next_user_id = 1
+next_prof_id = 1
+next_consulta_id = 1
+next_conteudo_id = 1
+
+# --- Funções Auxiliares (Apenas para demonstração, não seriam assim em produção) ---
+import bcrypt # Para hashing de senhas
+import datetime
+import uuid # Para links de sala virtual
+
+def hash_senha(senha):
+    # Em produção, usaria bcrypt.hashpw(senha.encode('utf-8'), bcrypt.gensalt())
+    return bcrypt.hashpw(senha.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
+
+def verificar_senha(senha_digitada, senha_hash):
+    # Em produção, usaria bcrypt.checkpw(senha_digitada.encode('utf-8'), senha_hash.encode('utf-8'))
+    return bcrypt.checkpw(senha_digitada.encode('utf-8'), senha_hash.encode('utf-8'))
+
+def gerar_link_sala_virtual():
+    return f"https://sala.bemestarconectado.com/{uuid.uuid4().hex}"
+
+# Lógica de Autenticação (Frontend e Backend interagem aqui)
+
+def registrar_usuario(nome, email, senha):
+    global next_user_id
+    if email in [u.email for u in db_usuarios.values()]:
+        return {"sucesso": False, "mensagem": "E-mail já cadastrado."}
+
+    senha_hashed = hash_senha(senha)
+    novo_usuario = Usuario(next_user_id, nome, email, senha_hashed)
+    db_usuarios[next_user_id] = novo_usuario
+    next_user_id += 1
+    print(f"Usuário {nome} registrado com sucesso!")
+    return {"sucesso": True, "mensagem": "Usuário registrado com sucesso."}
+
+def fazer_login(email, senha):
+    for user_id, usuario in db_usuarios.items():
+        if usuario.email == email:
+            if verificar_senha(senha, usuario.senha_hash):
+                # Em um sistema real, geraria um token JWT aqui
+                print(f"Login de {email} bem-sucedido!")
+                return {"sucesso": True, "mensagem": "Login bem-sucedido.", "usuario_id": usuario.id}
+            else:
+                return {"sucesso": False, "mensagem": "Senha incorreta."}
+    return {"sucesso": False, "mensagem": "Usuário não encontrado."}
+
+# --- Exemplos de Uso ---
+# registrar_usuario("Maria Silva", "maria@email.com", "senhaSegura123")
+# login_result = fazer_login("maria@email.com", "senhaSegura123")
+# print(login_result)
+# login_fail = fazer_login("maria@email.com", "senhaIncorreta")
+# print(login_fail)
+
+# Lógica de Agendamento de Consultas
+
+def verificar_disponibilidade_profissional(id_profissional, data_hora_inicio, data_hora_fim):
+    # Simula a verificação de agenda do profissional.
+    # Em um sistema real, seria mais complexo, verificando slots na agenda do profissional
+    # e se não há sobreposição com consultas já agendadas.
+
+    profissional = db_profissionais.get(id_profissional)
+    if not profissional:
+        return False, "Profissional não encontrado."
+
+    # Exemplo simplificado: Verifica se o profissional tem 'disponibilidade' geral
+    # e se a data/hora está dentro de um range razoável para a demo
+    if not profissional.disponibilidade: # Assume que se não tem disponibilidade, não pode agendar
+        return False, "Profissional não configurou disponibilidade."
+
+    # Lógica mais avançada exigiria parsing de profissional.disponibilidade
+    # e checagem de conflitos com db_consultas
+
+    # Para fins de demonstração simplificada:
+    # Apenas verifica se a data/hora é no futuro
+    if data_hora_inicio < datetime.datetime.now():
+        return False, "Data e hora devem ser no futuro."
+
+    # Verifica se o slot já está ocupado (simplificado)
+    for consulta_existente in db_consultas.values():
+        if (consulta_existente.id_profissional == id_profissional and
+            consulta_existente.data_hora_inicio == data_hora_inicio and
+            consulta_existente.status == "Agendada"):
+            return False, "Horário já agendado para este profissional."
+
+    return True, "Horário disponível."
+
+
+def agendar_consulta(id_usuario, id_profissional, data_hora_str):
+    global next_consulta_id
+    try:
+        data_hora_inicio = datetime.datetime.strptime(data_hora_str, '%Y-%m-%d %H:%M')
+        # Assumindo duração padrão de 1 hora para simplificação
+        data_hora_fim = data_hora_inicio + datetime.timedelta(hours=1)
+    except ValueError:
+        return {"sucesso": False, "mensagem": "Formato de data/hora inválido (YYYY-MM-DD HH:MM)."}
+
+    disponivel, mensagem = verificar_disponibilidade_profissional(id_profissional, data_hora_inicio, data_hora_fim)
+
+    if disponivel:
+        link_sala = gerar_link_sala_virtual()
+        nova_consulta = Consulta(next_consulta_id, id_usuario, id_profissional, data_hora_inicio, link_sala)
+        db_consultas[next_consulta_id] = nova_consulta
+        next_consulta_id += 1
+        print(f"Consulta agendada para Usuário {id_usuario} com Profissional {id_profissional} em {data_hora_str}.")
+        # Em um sistema real: enviar email de confirmação, notificar profissional
+        return {"sucesso": True, "mensagem": "Consulta agendada com sucesso.", "link_sala": link_sala}
+    else:
+        return {"sucesso": False, "mensagem": mensagem}
+
+# --- Exemplos de Uso ---
+# # Primeiro, registre um profissional e um usuário para testar
+# db_profissionais[101] = ProfissionalSaude(101, "Dr. João", "CRP12345", "Psicologia", {"segunda": ["09:00", "10:00"]})
+# db_usuarios[1] = Usuario(1, "Ana", "ana@email.com", hash_senha("senhaAna"))
+#
+# print(agendar_consulta(1, 101, "2025-06-12 10:00")) # Agendamento bem-sucedido
+# print(agendar_consulta(1, 101, "2025-06-12 10:00")) # Tentativa de agendar no mesmo horário
+# print(agendar_consulta(1, 101, "2024-01-01 09:00")) # Data no passado
+
+# Lógica de Conteúdo Educativo
+
+def adicionar_conteudo(titulo, tipo_midia, url_midia, texto_completo=""):
+    global next_conteudo_id
+    novo_conteudo = ConteudoEducativo(next_conteudo_id, titulo, tipo_midia, url_midia, texto_completo)
+    db_conteudo[next_conteudo_id] = novo_conteudo
+    next_conteudo_id += 1
+    print(f"Conteúdo '{titulo}' adicionado.")
+    return {"sucesso": True, "conteudo_id": novo_conteudo.id}
+
+def listar_conteudo():
+    # Retorna uma lista de dicionários com informações resumidas do conteúdo
+    return [{"id": c.id, "titulo": c.titulo, "tipo_midia": c.tipo_midia, "url_midia": c.url_midia} for c in db_conteudo.values()]
+
+def obter_detalhes_conteudo(id_conteudo):
+    conteudo = db_conteudo.get(id_conteudo)
+    if conteudo:
+        return {"sucesso": True, "conteudo": {"id": conteudo.id, "titulo": conteudo.titulo,
+                                            "tipo_midia": conteudo.tipo_midia, "url_midia": conteudo.url_midia,
+                                            "texto_completo": conteudo.texto_completo}}
+    return {"sucesso": False, "mensagem": "Conteúdo não encontrado."}
+
+# --- Exemplos de Uso ---
+# adicionar_conteudo("Lidando com a Ansiedade", "artigo", "https://plataforma.com/artigo/ansiedade", "Este artigo aborda técnicas...")
+# adicionar_conteudo("Guia de Meditação", "video", "https://youtube.com/meditacao")
+#
+# print("Conteúdos disponíveis:")
+# for item in listar_conteudo():
+#     print(f"- {item['titulo']} ({item['tipo_midia']})")
+#
+# print("\nDetalhes de um conteúdo específico:")
+# print(obter_detalhes_conteudo(1))
