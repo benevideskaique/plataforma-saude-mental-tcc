@@ -1,1 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bem-Estar Conectado - Plataforma de Saúde Mental Acessível</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <meta name="description" content="Plataforma de saúde mental online focada em acessibilidade e inclusão. Encontre terapeutas, conteúdo educativo e grupos de apoio.">
+    <meta name="color-scheme" content="light dark">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo" aria-label="Página inicial da Bem-Estar Conectado">Bem-Estar Conectado</a>
+            <nav class="main-nav" aria-label="Navegação principal do site">
+                <button class="nav-toggle" aria-controls="main-menu" aria-expanded="false" aria-label="Abrir menu de navegação">
+                    &#9776; </button>
+                <ul id="main-menu" class="nav-list">
+                    <li><a href="index.html" aria-current="page">Início</a></li>
+                    <li><a href="professionals.html">Buscar Terapeuta</a></li>
+                    <li><a href="#">Conteúdo Educativo</a></li>
+                    <li><a href="#">Grupos de Apoio</a></li>
+                    <li><a href="#" class="btn-login">Login / Cadastro</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
+    <main>
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Sua Jornada de Bem-Estar Mental Começa Aqui, Para Todos.</h1>
+                    <p>Conectamos você a profissionais de saúde mental qualificados, oferecemos conteúdo educativo e grupos de apoio, com foco total em acessibilidade e inclusão.</p>
+                    <a href="professionals.html" class="btn btn-primary">Encontrar Meu Terapeuta</a>
+                    <a href="#" class="btn btn-secondary">Explorar Conteúdo</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="features-section">
+            <div class="container">
+                <h2>Por Que Escolher a Bem-Estar Conectado?</h2>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <h3>Acessibilidade Completa</h3>
+                        <p>Plataforma desenvolvida seguindo as diretrizes WCAG, garantindo acesso a pessoas com deficiência visual, auditiva, motora e cognitiva.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>Profissionais Diversos</h3>
+                        <p>Encontre terapeutas que compreendem e respeitam a diversidade cultural, étnica e de gênero, com filtros específicos para suas necessidades.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>Suporte Integral</h3>
+                        <p>Consultas online seguras, uma vasta biblioteca de conteúdo psicoeducativo e a força dos grupos de apoio virtual.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <h2>Cuidar da sua mente nunca foi tão acessível.</h2>
+                <p>Comece sua jornada hoje. Faça seu cadastro e explore todas as nossas funcionalidades.</p>
+                <a href="#" class="btn btn-primary">Cadastre-se Gratuitamente</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Bem-Estar Conectado</h3>
+                    <p>Promovendo saúde mental para todos, com acessibilidade e inclusão.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Navegação</h3>
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="professionals.html">Buscar Terapeuta</a></li>
+                        <li><a href="#">Conteúdo Educativo</a></li>
+                        <li><a href="#">Grupos de Apoio</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#">Termos de Uso</a></li>
+                        <li><a href="#">Política de Privacidade</a></li>
+                        <li><a href="#" id="acessibility-policy-link">Política de Acessibilidade</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Acessibilidade</h3>
+                    <button id="toggle-contrast" aria-label="Alternar modo de alto contraste">Alto Contraste</button>
+                    <button id="toggle-font-size" aria-label="Aumentar/Diminuir tamanho da fonte">Tamanho da Fonte</button>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Bem-Estar Conectado. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/scripts.js"></script>
+</body>
+</html>
