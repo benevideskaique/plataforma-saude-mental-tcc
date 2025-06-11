@@ -1,0 +1,698 @@
+CSS
+
+/* Variáveis de Cores (para fácil ajuste e acessibilidade) */
+:root {
+    --primary-color: #007BFF; /* Azul para ações primárias */
+    --secondary-color: #28A745; /* Verde para ações secundárias/sucesso */
+    --text-color: #333;
+    --background-color: #f8f9fa;
+    --card-background: #ffffff;
+    --border-color: #e0e0e0;
+    --dark-text-color: #f8f9fa;
+    --dark-background-color: #333;
+    --dark-card-background: #444;
+    --highlight-color: #FFC107; /* Amarelo para foco */
+}
+
+/* Modo de Alto Contraste */
+body.high-contrast {
+    --text-color: #FFFF00; /* Amarelo brilhante para texto */
+    --background-color: #000000; /* Fundo preto */
+    --card-background: #1a1a1a;
+    --primary-color: #00FF00; /* Verde limão para botões primários */
+    --secondary-color: #FF00FF; /* Magenta para botões secundários */
+    --border-color: #555;
+    color: var(--text-color); /* Garante que o texto geral também adote a cor */
+}
+
+/* Reset Básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    font-size: 100%; /* Base para ajuste de fonte */
+    transition: all 0.3s ease-in-out; /* Transição suave para mudanças de tema */
+}
+
+body.large-font {
+    font-size: 115%;
+}
+
+body.extra-large-font {
+    font-size: 130%;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover, a:focus {
+    color: var(--secondary-color);
+    text-decoration: underline;
+    outline: 2px solid var(--highlight-color); /* Foco para acessibilidade */
+    outline-offset: 2px;
+}
+
+/* Botões */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.btn-primary:hover, .btn-primary:focus {
+    background-color: #0056b3;
+    color: #fff; /* Garante que o texto permaneça branco no hover */
+    text-decoration: none;
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+    color: #fff;
+}
+
+.btn-secondary:hover, .btn-secondary:focus {
+    background-color: #218838;
+    color: #fff; /* Garante que o texto permaneça branco no hover */
+    text-decoration: none;
+}
+
+.btn-full-width {
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* SR-Only (Screen Reader Only) para acessibilidade */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Header */
+.header {
+    background-color: var(--card-background);
+    color: var(--text-color);
+    padding: 15px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.main-nav .nav-list {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.main-nav .nav-list a {
+    color: var(--text-color);
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.main-nav .nav-list a:hover,
+.main-nav .nav-list a:focus,
+.main-nav .nav-list a[aria-current="page"] {
+    background-color: var(--primary-color);
+    color: #fff;
+    text-decoration: none;
+}
+
+.nav-toggle {
+    display: none; /* Esconder por padrão em desktop */
+    background: none;
+    border: none;
+    font-size: 30px;
+    color: var(--text-color);
+    cursor: pointer;
+    padding: 5px;
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    color: #fff;
+    padding: 80px 0;
+    text-align: center;
+}
+
+.hero-section h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.hero-section p {
+    font-size: 20px;
+    margin-bottom: 30px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-content .btn {
+    margin: 0 10px;
+}
+
+/* Features Section */
+.features-section {
+    padding: 60px 0;
+    text-align: center;
+    background-color: var(--background-color);
+}
+
+.features-section h2 {
+    font-size: 36px;
+    margin-bottom: 40px;
+    color: var(--primary-color);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.feature-item {
+    background-color: var(--card-background);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    text-align: left;
+    border: 1px solid var(--border-color);
+}
+
+.feature-item h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 24px;
+}
+
+/* CTA Section */
+.cta-section {
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 60px 0;
+    text-align: center;
+}
+
+.cta-section h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.cta-section p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+/* Footer */
+.footer {
+    background-color: var(--card-background);
+    color: var(--text-color);
+    padding: 40px 0;
+    border-top: 1px solid var(--border-color);
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.footer-col h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+.footer-col ul {
+    list-style: none;
+}
+
+.footer-col ul li {
+    margin-bottom: 10px;
+}
+
+.footer-col ul li a {
+    color: var(--text-color);
+}
+
+.footer-col button {
+    display: block;
+    width: 100%;
+    padding: 8px 15px;
+    margin-bottom: 10px;
+    background-color: var(--secondary-color);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.footer-col button:hover, .footer-col button:focus {
+    background-color: #218838;
+    outline: 2px solid var(--highlight-color);
+    outline-offset: 2px;
+}
+
+.copyright {
+    text-align: center;
+    border-top: 1px solid var(--border-color);
+    padding-top: 20px;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #666;
+}
+
+/* --- Professionals Page Specific Styles --- */
+.main-content {
+    padding: 40px 0;
+}
+
+.search-section {
+    background-color: var(--card-background);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    margin-bottom: 40px;
+    border: 1px solid var(--border-color);
+}
+
+.search-section h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--primary-color);
+}
+
+.search-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: flex-end;
+    margin-bottom: 30px;
+}
+
+.search-form input[type="text"],
+.search-form select {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    min-width: 180px;
+}
+
+.search-form .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    flex: 2; /* Ocupa mais espaço para os filtros */
+}
+
+.search-form button {
+    padding: 10px 25px;
+}
+
+.professional-results h2 {
+    font-size: 28px;
+    margin-bottom: 25px;
+    color: var(--primary-color);
+}
+
+.professional-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.professional-card {
+    background-color: var(--card-background);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    border: 1px solid var(--border-color);
+}
+
+.professional-photo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--primary-color);
+}
+
+.professional-info h3 {
+    font-size: 22px;
+    margin-bottom: 5px;
+    color: var(--text-color);
+}
+
+.professional-info .specialty {
+    color: var(--primary-color);
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.professional-info .description {
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.professional-info .rating {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+/* --- Professional Profile Page Specific Styles --- */
+.professional-profile {
+    background-color: var(--card-background);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    border: 1px solid var(--border-color);
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.profile-photo {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--primary-color);
+}
+
+.profile-intro h1 {
+    font-size: 38px;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+.profile-intro .profile-specialty {
+    font-size: 20px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.profile-intro .profile-rating {
+    font-size: 16px;
+    color: #666;
+}
+
+.profile-details {
+    display: grid;
+    grid-template-columns: 1fr 3fr; /* Sidebar e Conteúdo Principal */
+    gap: 30px;
+}
+
+.profile-sidebar {
+    background-color: var(--background-color);
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.booking-card, .contact-card {
+    margin-bottom: 25px;
+    padding-bottom: 25px;
+    border-bottom: 1px dashed var(--border-color);
+}
+.contact-card:last-child, .booking-card:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+
+.booking-card h2, .contact-card h3 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+.booking-card .price {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: var(--secondary-color);
+}
+
+.profile-sidebar input[type="date"],
+.profile-sidebar select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background-color: var(--card-background);
+    color: var(--text-color);
+}
+.profile-sidebar input[type="date"]:focus,
+.profile-sidebar select:focus {
+    outline: 2px solid var(--highlight-color);
+    outline-offset: 2px;
+}
+
+.profile-main-content h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+}
+
+.profile-main-content p {
+    margin-bottom: 15px;
+}
+
+.profile-main-content ul {
+    list-style: disc;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.profile-main-content ul li {
+    margin-bottom: 8px;
+}
+
+.reviews .review-item {
+    background-color: var(--background-color);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border: 1px solid var(--border-color);
+}
+
+.review-item .review-text {
+    font-style: italic;
+    margin-bottom: 5px;
+}
+
+.review-item .reviewer {
+    font-size: 14px;
+    text-align: right;
+    color: #888;
+}
+
+/* Media Queries para Responsividade */
+@media (max-width: 768px) {
+    .header .container {
+        flex-wrap: wrap;
+    }
+    .main-nav {
+        width: 100%;
+        text-align: center;
+    }
+    .nav-toggle {
+        display: block; /* Mostrar botão de hambúrguer */
+        order: 1; /* Para aparecer antes do logo, se desejar */
+    }
+    .logo {
+        order: 2; /* Para aparecer depois do botão de hambúrguer */
+    }
+    .main-nav .nav-list {
+        display: none; /* Esconder lista de navegação por padrão */
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+        margin-top: 15px;
+    }
+    .main-nav .nav-list.active {
+        display: flex; /* Mostrar quando o menu for ativado */
+    }
+    .main-nav .nav-list li {
+        width: 100%;
+    }
+    .main-nav .nav-list a {
+        display: block;
+        padding: 10px;
+    }
+
+    .hero-section h1 {
+        font-size: 36px;
+    }
+
+    .hero-section p {
+        font-size: 16px;
+    }
+
+    .hero-content .btn {
+        display: block;
+        margin: 10px auto;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    .profile-intro {
+        text-align: center;
+    }
+    .profile-details {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Modo de Alto Contraste (Cores Específicas) */
+body.high-contrast {
+    background-color: black !important;
+    color: yellow !important;
+}
+body.high-contrast a {
+    color: cyan !important;
+}
+body.high-contrast a:hover, body.high-contrast a:focus {
+    color: lime !important;
+    outline-color: yellow !important;
+}
+body.high-contrast .btn-primary {
+    background-color: lime !important;
+    color: black !important;
+}
+body.high-contrast .btn-primary:hover, body.high-contrast .btn-primary:focus {
+    background-color: #00CC00 !important;
+    color: black !important;
+}
+body.high-contrast .btn-secondary {
+    background-color: magenta !important;
+    color: black !important;
+}
+body.high-contrast .btn-secondary:hover, body.high-contrast .btn-secondary:focus {
+    background-color: #CC00CC !important;
+    color: black !important;
+}
+body.high-contrast .header,
+body.high-contrast .feature-item,
+body.high-contrast .professional-card,
+body.high-contrast .search-section,
+body.high-contrast .professional-profile,
+body.high-contrast .profile-sidebar,
+body.high-contrast .review-item,
+body.high-contrast .footer {
+    background-color: #1a1a1a !important; /* Cinza escuro */
+    color: yellow !important;
+    border-color: yellow !important; /* Borda amarela */
+}
+body.high-contrast .logo,
+body.high-contrast .features-section h2,
+body.high-contrast .feature-item h3,
+body.high-contrast .professional-results h2,
+body.high-contrast .profile-intro h1,
+body.high-contrast .booking-card h2,
+body.high-contrast .contact-card h3,
+body.high-contrast .profile-main-content h2,
+body.high-contrast .footer-col h3,
+body.high-contrast .professional-info .specialty {
+    color: lime !important;
+}
+body.high-contrast .professional-photo, .profile-photo {
+    border-color: lime !important;
+}
+body.high-contrast input, body.high-contrast select {
+    background-color: #333 !important;
+    color: yellow !important;
+    border-color: yellow !important;
+}
+body.high-contrast input:focus, body.high-contrast select:focus,
+body.high-contrast button:focus {
+    outline-color: lime !important;
+}
+body.high-contrast .copyright,
+body.high-contrast .professional-info .rating,
+body.high-contrast .profile-intro .profile-specialty,
+body.high-contrast .profile-intro .profile-rating,
+body.high-contrast .review-item .reviewer {
+    color: #AAAAAA !important; /* Cinza claro */
+}
+
+
+/* Foco visual para elementos interativos */
+a:focus, button:focus, input:focus, select:focus {
+    outline: 3px dashed var(--highlight-color); /* Amarelo */
+    outline-offset: 3px;
+}
